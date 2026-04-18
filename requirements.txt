@@ -1,0 +1,12 @@
+playwright
+beautifulsoup4
+requests
+fastapi
+uvicorn[standard]
+supabase
+python-dotenv
+apscheduler
+pydantic
+httpx
+lxml
+python-slugify
