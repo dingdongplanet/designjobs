@@ -91,14 +91,14 @@ def get_jobs(
         query = query.lte("salary_max", salary_max)
 
     # Sorting
-    sort_map = {
-        "newest": ("posted_at", {"ascending": False, "nullsfirst": False}),
-        "oldest": ("posted_at", {"ascending": True}),
-        "salary_high": ("salary_max", {"ascending": False, "nullsfirst": False}),
-        "salary_low": ("salary_min", {"ascending": True}),
-    }
-    col, opts = sort_map.get(sort, sort_map["newest"])
-    query = query.order(col, **opts)
+   sort_map = {
+    "newest": ("posted_at", "desc"),
+    "oldest": ("posted_at", "asc"),
+    "salary_high": ("salary_max", "desc"),
+    "salary_low": ("salary_min", "asc"),
+}
+col, direction = sort_map.get(sort, sort_map["newest"])
+query = query.order(col, desc=(direction == "desc"))
 
     # Pagination
     offset = (page - 1) * per_page
